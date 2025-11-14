@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, Arial, sans-serif;
+  background: #f8f9fa;
+  color: #222;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* App.css */
+.ProseMirror {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
+/* opcional: manter um feedback de foco mais suave */
+.ProseMirror-focused {
+  outline: none !important;
+  border: none !important;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.1); /* bem sutil */
+  border-radius: 4px; /* deixa arredondado igual ao Box */
+}
+
+.ProseMirror img {
+  display: block;
+  margin: 0 auto; /* centraliza quando align center */
+}
+
