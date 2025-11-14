@@ -1,12 +1,13 @@
 import Box from "@mui/material/Box";
-import { type ReactNode } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
+import rehypeRaw from "rehype-raw";
+import { Stack } from "@mui/material";
 
-const BackContent = ({ content }: { content: ReactNode }) => {
+const BackContent = ({ content }: { content: string }) => {
   return (
-    <Box
+    <Stack
       sx={{
-        display: "flex",
-        justifyContent: "center",
         alignItems: "flex-start",
         padding: "24px",
         boxSizing: "border-box",
@@ -17,8 +18,27 @@ const BackContent = ({ content }: { content: ReactNode }) => {
         height: "100%",
       }}
     >
-      {content}
-    </Box>
+      <ReactMarkdown
+        children={content}
+        rehypePlugins={[rehypeRaw, remarkBreaks]}
+        components={{
+          p: ({ ...props }) => (
+            <Box
+              component="p"
+              {...props}
+              sx={{
+                fontWeight: 600,
+                fontSize: "1.2rem",
+                letterSpacing: "0.05em",
+              }}
+            />
+          ),
+          input: ({ ...props }) => (
+            <input {...props} onClick={(e) => e.stopPropagation()} />
+          ),
+        }}
+      />
+    </Stack>
   );
 };
 
