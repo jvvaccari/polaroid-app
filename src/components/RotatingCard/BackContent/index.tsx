@@ -55,7 +55,7 @@ const BackContent = ({ content }: { content: string }) => {
       <Stack
         direction="row"
         spacing={1}
-        sx={{ width: "100%", mt: 2, p: 1 }}
+        sx={{ width: "100%", mt: 2 }}
         onClick={(e) => e.stopPropagation()}
       >
         <TextField
