@@ -55,7 +55,7 @@ const BackContent = ({ content }: { content: string }) => {
       <Stack
         direction="row"
         spacing={1}
-        sx={{ width: "100%", mt: 2 }}
+        sx={{ width: "100%", mt: 2, p: 1 }}
         onClick={(e) => e.stopPropagation()}
       >
         <TextField
@@ -75,7 +75,10 @@ const BackContent = ({ content }: { content: string }) => {
           }}
         />
         <Button
-          onClick={handleSubmit}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleSubmit();
+          }}
           variant="contained"
           sx={{
             fontWeight: 600,

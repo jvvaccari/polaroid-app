@@ -105,16 +105,13 @@ const RotatingCard = ({
   }, [flipped]);
 
   return (
-    <Box
-      style={cardStyle}
-      onClick={() => setFlipped((f) => !f)}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      onPointerUp={handlePointerLeave}
-      onPointerCancel={handlePointerLeave}
-    >
+    <Box style={cardStyle} onClick={() => setFlipped((f) => !f)}>
       <Box ref={innerRef} style={innerStyle}>
         <Box
+          onPointerMove={handlePointerMove}
+          onPointerLeave={handlePointerLeave}
+          onPointerUp={handlePointerLeave}
+          onPointerCancel={handlePointerLeave}
           style={{
             ...sideStyle,
             transform: "rotateY(0deg)",
