@@ -29,7 +29,6 @@ const RotatingCard = ({
     justifyContent: "center",
     willChange: "transform",
     transition: "box-shadow 0.2s",
-    // prevent default touch gestures while interacting with the card
     touchAction: "none",
   };
 
@@ -40,7 +39,6 @@ const RotatingCard = ({
     transition: "transform 0.3s cubic-bezier(.23,1,.32,1)",
     transformStyle: "preserve-3d",
     backgroundColor: "transparent",
-    // transform will be mutated directly on the DOM for smoother updates
     transform: `rotateY(${flipped ? -180 : 0}deg) rotateX(0deg) rotateY(0deg)`,
   };
 
