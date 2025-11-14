@@ -10,7 +10,7 @@ const testMarkdownContent = `
 
 **Data:** 13 de julho, 2024
 
-Esse dia foi especial. O sol brilhava forte, e o mar estava calmo como <input></input> vi antes.
+Esse dia foi especial. O sol brilhava forte, e o mar estava calmo como nunca vi antes.
 
 > "As melhores memórias são aquelas que guardamos no coração."
 

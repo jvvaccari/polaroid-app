@@ -1,5 +1,11 @@
 import Box from "@mui/material/Box";
-import { type ReactNode, useState } from "react";
+import {
+  type ReactNode,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
 
 const RotatingCard = ({
   children,
@@ -7,20 +13,24 @@ const RotatingCard = ({
   children: { front: ReactNode; back: ReactNode };
 }) => {
   const [flipped, setFlipped] = useState(false);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const innerRef = useRef<HTMLDivElement | null>(null);
+  const tiltRef = useRef({ x: 0, y: 0 });
+  const rafRef = useRef<number | null>(null);
 
   const cardStyle = {
     backgroundColor: "transparent",
     width: "100%",
-    maxWidth: "580px",
-    aspectRatio: "1",
+    maxWidth: "620px",
+    aspectRatio: 1,
     perspective: 1000,
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     willChange: "transform",
-    transition: "box-shadow 0.5s",
+    transition: "box-shadow 0.2s",
+    // prevent default touch gestures while interacting with the card
+    touchAction: "none",
   };
 
   const innerStyle: React.CSSProperties = {
@@ -30,11 +40,8 @@ const RotatingCard = ({
     transition: "transform 0.3s cubic-bezier(.23,1,.32,1)",
     transformStyle: "preserve-3d",
     backgroundColor: "transparent",
-    transform: `rotateY(${flipped ? -180 : 0}deg) rotateX(${
-      tilt.y
-    }deg) rotateY(${tilt.x}deg)`,
-    WebkitFontSmoothing: "antialiased",
-    MozOsxFontSmoothing: "grayscale",
+    // transform will be mutated directly on the DOM for smoother updates
+    transform: `rotateY(${flipped ? -180 : 0}deg) rotateX(0deg) rotateY(0deg)`,
   };
 
   const sideStyle: React.CSSProperties = {
@@ -42,43 +49,75 @@ const RotatingCard = ({
     width: "100%",
     height: "100%",
     backfaceVisibility: "hidden",
-    overflow: "hidden",
+    borderRadius: 25,
+    overflow: "visible",
     backgroundColor: "transparent",
-    WebkitBackfaceVisibility: "hidden",
-    WebkitTransform: "translateZ(0)",
-    transform: "translateZ(0)",
-    outline: "1px solid transparent", 
+  };
+  const maxTilt = 12;
+
+  const applyTransform = useCallback(() => {
+    if (!innerRef.current) return;
+    const t = tiltRef.current;
+    innerRef.current.style.transform = `rotateY(${
+      flipped ? -180 : 0
+    }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+    rafRef.current = null;
+  }, [flipped]);
+
+  const scheduleApply = () => {
+    if (rafRef.current == null) {
+      rafRef.current = requestAnimationFrame(applyTransform);
+    }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const maxTilt = 12;
     const tiltX = ((x - centerX) / centerX) * maxTilt;
     const tiltY = -((y - centerY) / centerY) * maxTilt;
-    setTilt({ x: tiltX, y: tiltY });
+    tiltRef.current = { x: tiltX, y: tiltY };
+    scheduleApply();
   };
 
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
+  const handlePointerLeave = () => {
+    tiltRef.current = { x: 0, y: 0 };
+    scheduleApply();
   };
+
+  useEffect(() => {
+    if (rafRef.current != null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    if (innerRef.current) {
+      const t = tiltRef.current;
+      innerRef.current.style.transform = `rotateY(${
+        flipped ? -180 : 0
+      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+    }
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [flipped]);
 
   return (
     <Box
       style={cardStyle}
       onClick={() => setFlipped((f) => !f)}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      onPointerUp={handlePointerLeave}
+      onPointerCancel={handlePointerLeave}
     >
-      <Box style={innerStyle}>
+      <Box ref={innerRef} style={innerStyle}>
         <Box
           style={{
             ...sideStyle,
-            transform: "rotateY(0deg) translateZ(1px)",
+            transform: "rotateY(0deg)",
           }}
         >
           {children.front}
@@ -86,7 +125,7 @@ const RotatingCard = ({
         <Box
           style={{
             ...sideStyle,
-            transform: "rotateY(-180deg) translateZ(1px)",
+            transform: "rotateY(-180deg)",
           }}
         >
           {children.back}
