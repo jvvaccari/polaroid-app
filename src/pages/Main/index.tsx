@@ -1,9 +1,12 @@
 import RotatingCard from "../../components/RotatingCard";
 import BackContent from "../../components/RotatingCard/BackContent";
-import FrontContent from "../../components/RotatingCard/FrontContent";
+// import PolaroidFrontContent from "../../components/RotatingCard/PolaroidFrontContent";
 import MainLayout from "../../layouts/main";
-import polaroidImage from "../../assets/imgTest.jpeg";
+// import polaroidImage from "../../assets/imgTest.jpeg";
+import coverImage from "../../assets/estrelaFlor.png";
+
 import ImageItem from "../../components/ImageItem";
+import CardCover from "../../components/RotatingCard/CardCover";
 
 const testMarkdownContent = `
 # Memórias de Verão
@@ -30,8 +33,11 @@ const MainPage = () => {
       <RotatingCard
         children={{
           front: (
-            <FrontContent
-              content={<ImageItem src={polaroidImage} alt={"Polaroid image"} />}
+            // <PolaroidFrontContent
+            //   content={<ImageItem src={polaroidImage} alt={"Polaroid image"} />}
+            // />
+            <CardCover
+              content={<ImageItem src={coverImage} alt={"Polaroid image"} />}
             />
           ),
           back: <BackContent content={testMarkdownContent} />,

@@ -1,9 +1,7 @@
-import Box from "@mui/material/Box";
-import ReactMarkdown from "react-markdown";
-import remarkBreaks from "remark-breaks";
-import rehypeRaw from "rehype-raw";
-import { Stack, TextField, Button } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useState } from "react";
+import MarkdownContent from "../../MarkdownContent";
+import AnswerForm from "./AnswerForm";
 
 const BackContent = ({ content }: { content: string }) => {
   const [answer, setAnswer] = useState("");
@@ -33,62 +31,14 @@ const BackContent = ({ content }: { content: string }) => {
       onDragStart={(e) => e.preventDefault()}
     >
       <Stack>
-        <ReactMarkdown
-          children={content}
-          rehypePlugins={[rehypeRaw, remarkBreaks]}
-          components={{
-            p: ({ ...props }) => (
-              <Box
-                component="p"
-                {...props}
-                sx={{
-                  fontWeight: 600,
-                  fontSize: "1.2rem",
-                  letterSpacing: "0.05em",
-                }}
-              />
-            ),
-          }}
-        />
+        <MarkdownContent content={content} />
       </Stack>
 
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{ width: "100%", mt: 2 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <TextField
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          placeholder="Qual o número do dia?"
-          variant="outlined"
-          size="small"
-          sx={{
-            flex: 1,
-            backgroundColor: "white",
-            borderRadius: 1,
-            "& .MuiOutlinedInput-root": {
-              fontWeight: 600,
-              letterSpacing: "0.05em",
-            },
-          }}
-        />
-        <Button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleSubmit();
-          }}
-          variant="contained"
-          sx={{
-            fontWeight: 600,
-            letterSpacing: "0.05em",
-            textTransform: "none",
-          }}
-        >
-          Enviar
-        </Button>
-      </Stack>
+      <AnswerForm
+        answer={answer}
+        setAnswer={setAnswer}
+        onSubmit={handleSubmit}
+      />
     </Stack>
   );
 };

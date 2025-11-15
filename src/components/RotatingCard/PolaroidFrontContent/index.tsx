@@ -2,11 +2,11 @@ import { Box, Stack } from "@mui/material";
 import { type ReactNode } from "react";
 import CurrentDate from "../../CurrentDate";
 
-const FrontContent = ({ content }: { content: ReactNode }) => {
+const PolaroidFrontContent = ({ content }: { content: ReactNode }) => {
   return (
     <Stack
       sx={{
-        justifyContent: "space-between", 
+        justifyContent: "space-between",
         alignItems: "flex-start",
         padding: "26px",
         boxSizing: "border-box",
@@ -25,4 +25,4 @@ const FrontContent = ({ content }: { content: ReactNode }) => {
   );
 };
 
-export default FrontContent;
+export default PolaroidFrontContent;
