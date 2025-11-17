@@ -6,18 +6,13 @@ import AnswerForm from "./AnswerForm";
 const BackContent = ({
   content,
   isOnlyContent,
+  handleSubmit,
 }: {
   content?: string;
   isOnlyContent: boolean;
+  handleSubmit: (answer: string) => void;
 }) => {
   const [answer, setAnswer] = useState("");
-
-  const handleSubmit = () => {
-    // Aqui você pode adicionar a lógica para verificar a resposta
-    console.log("Resposta enviada:", answer);
-    // Exemplo: verificar se a resposta está correta
-    // if (answer === numeroCorreto) { ... }
-  };
 
   return (
     <Stack
@@ -44,7 +39,7 @@ const BackContent = ({
         <AnswerForm
           answer={answer}
           setAnswer={setAnswer}
-          onSubmit={handleSubmit}
+          onSubmit={() => handleSubmit(answer)}
         />
       )}
     </Stack>

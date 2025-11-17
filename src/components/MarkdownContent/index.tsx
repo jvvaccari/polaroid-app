@@ -15,7 +15,7 @@ const MarkdownContent = ({ content }: { content: string }) => {
             {...props}
             sx={{
               fontWeight: 600,
-              fontSize: { xs: "1.2rem", md: "1.4rem" },
+              fontSize: { xs: "1.2rem", md: "1.6rem" },
               letterSpacing: "0.05em",
             }}
           />
