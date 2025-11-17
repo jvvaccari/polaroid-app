@@ -1,13 +1,12 @@
 import { Box, Stack } from "@mui/material";
 import { type ReactNode } from "react";
 
-const CardCover = ({ content }: { content: ReactNode }) => {
+const CardCover = ({ cover }: { cover: ReactNode }) => {
   return (
     <Stack
       sx={{
         justifyContent: "space-between",
         alignItems: "flex-start",
-        padding: "12px",
         boxSizing: "border-box",
         backgroundColor: "primary.light",
         backgroundImage: `radial-gradient(circle, rgba(61, 59, 59, 0.08) 1.4px, transparent 1.4px)`,
@@ -17,7 +16,7 @@ const CardCover = ({ content }: { content: ReactNode }) => {
       }}
     >
       <Box overflow={"hidden"} height="100%">
-        {content}
+        {cover}
       </Box>
     </Stack>
   );

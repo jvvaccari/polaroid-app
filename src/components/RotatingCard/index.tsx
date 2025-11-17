@@ -38,8 +38,12 @@ const RotatingCard = ({
     height: "100%",
     transition: "transform 0.3s cubic-bezier(.23,1,.32,1)",
     transformStyle: "preserve-3d",
+    WebkitTransformStyle: "preserve-3d",
+    backfaceVisibility: "hidden",
+    WebkitBackfaceVisibility: "hidden",
     backgroundColor: "transparent",
-    transform: `rotateY(${flipped ? -180 : 0}deg) rotateX(0deg) rotateY(0deg)`,
+    transform: `translateZ(0) rotateY(${flipped ? -180 : 0}deg)`,
+    willChange: "transform",
   };
 
   const sideStyle: React.CSSProperties = {

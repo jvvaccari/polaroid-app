@@ -3,7 +3,13 @@ import { useState } from "react";
 import MarkdownContent from "../../MarkdownContent";
 import AnswerForm from "./AnswerForm";
 
-const BackContent = ({ content }: { content?: string }) => {
+const BackContent = ({
+  content,
+  isOnlyContent,
+}: {
+  content?: string;
+  isOnlyContent: boolean;
+}) => {
   const [answer, setAnswer] = useState("");
 
   const handleSubmit = () => {
@@ -12,10 +18,6 @@ const BackContent = ({ content }: { content?: string }) => {
     // Exemplo: verificar se a resposta está correta
     // if (answer === numeroCorreto) { ... }
   };
-
-  if (!content) {
-    return null;
-  }
 
   return (
     <Stack
@@ -35,14 +37,16 @@ const BackContent = ({ content }: { content?: string }) => {
       onDragStart={(e) => e.preventDefault()}
     >
       <Stack>
-        <MarkdownContent content={content} />
+        <MarkdownContent content={content || ""} />
       </Stack>
 
-      <AnswerForm
-        answer={answer}
-        setAnswer={setAnswer}
-        onSubmit={handleSubmit}
-      />
+      {isOnlyContent && content && (
+        <AnswerForm
+          answer={answer}
+          setAnswer={setAnswer}
+          onSubmit={handleSubmit}
+        />
+      )}
     </Stack>
   );
 };
