@@ -1,4 +1,4 @@
-import { Stack, type SxProps, type Theme } from "@mui/material";
+import { Container, Stack, type SxProps, type Theme } from "@mui/material";
 
 interface MainLayoutProps {
     children: React.ReactNode;
@@ -19,7 +19,9 @@ const MainLayout = ({ children, sx }: MainLayoutProps) => {
                 ...sx,
             }}
         >
-            {children}
+            <Container maxWidth="xl" sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                {children}
+            </Container>
         </Stack>
     )
 };
