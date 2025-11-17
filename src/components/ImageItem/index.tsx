@@ -10,7 +10,7 @@ const ImageItem = ({ src, alt, ...sx }: ImageItemProps) => {
   return (
     <Box
       component="img"
-      src={"http://localhost:3000" + src}
+      src={src}
       alt={alt}
       draggable={false}
       onDragStart={(e) => e.preventDefault()}
