@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
 interface ImageItemProps {
-  src: string;
+  src?: string;
   alt: string;
   sx?: object;
 }
@@ -10,7 +10,7 @@ const ImageItem = ({ src, alt, ...sx }: ImageItemProps) => {
   return (
     <Box
       component="img"
-      src={src}
+      src={"http://localhost:3000" + src}
       alt={alt}
       draggable={false}
       onDragStart={(e) => e.preventDefault()}

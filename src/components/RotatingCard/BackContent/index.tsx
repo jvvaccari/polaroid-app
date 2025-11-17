@@ -3,7 +3,7 @@ import { useState } from "react";
 import MarkdownContent from "../../MarkdownContent";
 import AnswerForm from "./AnswerForm";
 
-const BackContent = ({ content }: { content: string }) => {
+const BackContent = ({ content }: { content?: string }) => {
   const [answer, setAnswer] = useState("");
 
   const handleSubmit = () => {
@@ -12,6 +12,10 @@ const BackContent = ({ content }: { content: string }) => {
     // Exemplo: verificar se a resposta está correta
     // if (answer === numeroCorreto) { ... }
   };
+
+  if (!content) {
+    return null;
+  }
 
   return (
     <Stack
