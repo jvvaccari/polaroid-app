@@ -6,7 +6,7 @@ interface ImageItemProps {
   sx?: object;
 }
 
-const ImageItem = ({ src, alt, ...sx }: ImageItemProps) => {
+const ImageItem = ({ src, alt, sx }: ImageItemProps) => {
   return (
     <Box
       component="img"
@@ -18,7 +18,7 @@ const ImageItem = ({ src, alt, ...sx }: ImageItemProps) => {
         width: "100%",
         height: "auto",
         objectFit: "cover",
-        objectPosition: "center",
+        display: "block",
         ...sx,
       }}
     />
