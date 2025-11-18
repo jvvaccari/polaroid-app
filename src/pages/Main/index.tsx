@@ -6,7 +6,7 @@ import MainLayout from "../../layouts/main";
 import ImageItem from "../../components/ImageItem";
 import { useEffect, useState } from "react";
 import { IPolaroid } from "../../interfaces/IPolaroid";
-import { polaroidService } from "../../services";
+import { dailyChallengeService } from "../../services";
 import CardCover from "../../components/RotatingCard/CardCover";
 import { useApp } from "../../hooks/useApp";
 
@@ -17,9 +17,7 @@ const MainPage = () => {
   useEffect(() => {
     async function fetchPolaroid() {
       try {
-        const fetchPolaroid = await polaroidService.getPolaroidById(
-          "691b6ab601c2926f7ac4cac0"
-        );
+        const fetchPolaroid = await dailyChallengeService.getDailyChallenge();
         setPolaroid(fetchPolaroid);
         console.log("Fetched polaroid:", fetchPolaroid);
       } catch (error) {
