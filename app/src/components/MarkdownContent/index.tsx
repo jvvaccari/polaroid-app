@@ -9,39 +9,42 @@ const MarkdownContent = ({ content }: { content: string }) => {
       children={content}
       rehypePlugins={[rehypeRaw, remarkBreaks]}
       components={{
-        p: ({ ...props }) => (
+        p: ({ children }) => (
           <Box
             component="p"
-            {...props}
             sx={{
               fontSize: { xs: "1.2rem", md: "1.6rem" },
-              letterSpacing: "0.05em",
+              letterSpacing: "0.5px",
               lineHeight: 1.8,
               marginBottom: 2,
               color: "text.primary",
             }}
-          />
+          >
+            {children}
+          </Box>
         ),
-        strong: ({ ...props }) => (
+        strong: ({ children }) => (
           <Box
             component="strong"
-            {...props}
             sx={{
-              fontWeight: 800,
+              fontWeight: 700,
               color: "primary.main",
             }}
-          />
+          >
+            {children}
+          </Box>
         ),
-        em: ({ ...props }) => (
+        em: ({ children }) => (
           <Box
             component="em"
-            {...props}
             sx={{
               fontStyle: "italic",
               fontWeight: 500,
               color: "text.secondary",
             }}
-          />
+          >
+            {children}
+          </Box>
         ),
         hr: () => (
           <Box

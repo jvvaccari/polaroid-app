@@ -13,6 +13,12 @@ const MainPage = () => {
   const { handleMessage } = useApp();
 
   useEffect(() => {
+    if (isError) {
+      handleMessage("Erro ao carregar desafio diário", "error");
+    }
+  }, [isError, handleMessage]);
+
+  useEffect(() => {
     const checkMidnight = () => {
       const now = new Date();
       const midnight = new Date();
@@ -48,10 +54,6 @@ const MainPage = () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [refetch]);
-
-  if (isError) {
-    handleMessage("Erro ao carregar desafio diário", "error");
-  }
 
   const handleSubmit = (answer: string) => {
     const isCorrect = parseInt(answer) === dailyChallenge?.keyNumber;
