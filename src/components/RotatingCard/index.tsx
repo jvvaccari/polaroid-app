@@ -20,7 +20,7 @@ const RotatingCard = ({
   const cardStyle = {
     backgroundColor: "transparent",
     width: "100%",
-    maxWidth: "720px",
+    maxWidth: "680px",
     aspectRatio: 1,
     perspective: 1000,
     cursor: "pointer",
@@ -60,9 +60,8 @@ const RotatingCard = ({
   const applyTransform = useCallback(() => {
     if (!innerRef.current) return;
     const t = tiltRef.current;
-    innerRef.current.style.transform = `rotateY(${
-      flipped ? -180 : 0
-    }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+    innerRef.current.style.transform = `rotateY(${flipped ? -180 : 0
+      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
     rafRef.current = null;
   }, [flipped]);
 
@@ -97,9 +96,8 @@ const RotatingCard = ({
     }
     if (innerRef.current) {
       const t = tiltRef.current;
-      innerRef.current.style.transform = `rotateY(${
-        flipped ? -180 : 0
-      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+      innerRef.current.style.transform = `rotateY(${flipped ? -180 : 0
+        }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
     }
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
