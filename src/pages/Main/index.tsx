@@ -4,32 +4,21 @@ import PolaroidFrontContent from "../../components/RotatingCard/PolaroidFrontCon
 import MainLayout from "../../layouts/main";
 
 import ImageItem from "../../components/ImageItem";
-import { useEffect, useState } from "react";
-import { IPolaroid } from "../../interfaces/IPolaroid";
-import { dailyChallengeService } from "../../services";
 import CardCover from "../../components/RotatingCard/CardCover";
 import { useApp } from "../../hooks/useApp";
+import { useGetDailyChallenge } from "../../hooks/daily-challenge/use-get-daily-challenge";
 
 const MainPage = () => {
-  const [polaroid, setPolaroid] = useState<IPolaroid | null>(null);
+  const { data: dailyChallenge, isError } = useGetDailyChallenge();
   const { handleMessage } = useApp();
 
-  useEffect(() => {
-    async function fetchPolaroid() {
-      try {
-        const fetchPolaroid = await dailyChallengeService.getDailyChallenge();
-        setPolaroid(fetchPolaroid);
-        console.log("Fetched polaroid:", fetchPolaroid);
-      } catch (error) {
-        console.error("Error fetching image:", error);
-      }
-    }
+  if (isError) {
+    handleMessage("Erro ao carregar desafio diário", "error");
+  }
 
-    fetchPolaroid();
-  }, []);
 
   const handleSubmit = (answer: string) => {
-    const isCorrect = parseInt(answer) === polaroid?.keyNumber;
+    const isCorrect = parseInt(answer) === dailyChallenge?.keyNumber;
 
     if (isCorrect) {
       handleMessage("Resposta certa!", "success");
@@ -43,23 +32,23 @@ const MainPage = () => {
     <MainLayout sx={{ backgroundColor: "primary.dark" }}>
       <RotatingCard
         children={{
-          front: polaroid?.keyNumber ? (
+          front: dailyChallenge?.keyNumber ? (
             <PolaroidFrontContent
               content={
-                <ImageItem src={polaroid?.imageUrl} alt={"Polaroid image"} />
+                <ImageItem src={dailyChallenge?.imageUrl} alt={"Polaroid image"} />
               }
             />
           ) : (
             <CardCover
               cover={
-                <ImageItem src={polaroid?.imageUrl} alt={"Polaroid image"} />
+                <ImageItem src={dailyChallenge?.imageUrl} alt={"Polaroid image"} />
               }
             />
           ),
           back: (
             <BackContent
-              content={polaroid?.backContent}
-              isOnlyContent={!!polaroid?.keyNumber}
+              content={dailyChallenge?.backContent}
+              isOnlyContent={!!dailyChallenge?.keyNumber}
               handleSubmit={handleSubmit}
             />
           ),

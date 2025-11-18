@@ -14,7 +14,6 @@ const MarkdownContent = ({ content }: { content: string }) => {
             component="p"
             {...props}
             sx={{
-              fontWeight: 600,
               fontSize: { xs: "1.2rem", md: "1.6rem" },
               letterSpacing: "0.05em",
               lineHeight: 1.8,
@@ -28,7 +27,7 @@ const MarkdownContent = ({ content }: { content: string }) => {
             component="strong"
             {...props}
             sx={{
-              fontWeight: 700,
+              fontWeight: 800,
               color: "primary.main",
             }}
           />
