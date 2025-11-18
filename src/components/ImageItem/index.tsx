@@ -18,6 +18,7 @@ const ImageItem = ({ src, alt, ...sx }: ImageItemProps) => {
         width: "100%",
         height: "auto",
         objectFit: "cover",
+        objectPosition: "center",
         ...sx,
       }}
     />

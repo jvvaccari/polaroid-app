@@ -17,7 +17,7 @@ const PolaroidFrontContent = ({ content }: { content: ReactNode }) => {
         height: "100%",
       }}
     >
-      <Box overflow={"hidden"} maxHeight="89%">
+      <Box overflow={"hidden"} height="89%" >
         {content}
       </Box>
       <CurrentDate />

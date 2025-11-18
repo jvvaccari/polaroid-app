@@ -18,7 +18,7 @@ const MainPage = () => {
     async function fetchPolaroid() {
       try {
         const fetchPolaroid = await polaroidService.getPolaroidById(
-          "691bb657233711b5d2e95ce8"
+          "691b6ab601c2926f7ac4cac0"
         );
         setPolaroid(fetchPolaroid);
         console.log("Fetched polaroid:", fetchPolaroid);
