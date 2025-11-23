@@ -16,8 +16,8 @@ FROM nginx:alpine
 COPY --from=builder /app/dist /var/www/html
 
 # Copia a configuração do nginx
-COPY polaroid-app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
