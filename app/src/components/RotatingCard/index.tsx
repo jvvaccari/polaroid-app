@@ -19,7 +19,7 @@ const RotatingCard = ({
 
   const cardStyle = {
     backgroundColor: "transparent",
-    width: "100%",
+    width: { xs: "80%", md: "100%" },
     maxWidth: "620px",
     aspectRatio: 1,
     perspective: 1000,
