@@ -19,7 +19,7 @@ const RotatingCard = ({
 
   const cardStyle = {
     backgroundColor: "transparent",
-    width: { xs: "80%", md: "100%" },
+    width: { xs: "90%", md: "100%" },
     maxWidth: "620px",
     aspectRatio: 1,
     perspective: 1000,
@@ -58,7 +58,7 @@ const RotatingCard = ({
 
   const applyTransform = useCallback(() => {
     if (!innerRef.current) return;
-    const t = tiltRef.current;
+    const t = flipped ? { x: 0, y: 0 } : tiltRef.current;
     innerRef.current.style.transform = `rotateY(${
       flipped ? -180 : 0
     }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
@@ -72,6 +72,7 @@ const RotatingCard = ({
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (flipped) return; // Não aplica tilt se estiver virado
     const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -85,6 +86,26 @@ const RotatingCard = ({
   };
 
   const handlePointerLeave = () => {
+    tiltRef.current = { x: 0, y: 0 };
+    scheduleApply();
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (flipped) return; // Não aplica tilt se estiver virado
+    const touch = e.touches[0];
+    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const tiltX = ((x - centerX) / centerX) * maxTilt;
+    const tiltY = -((y - centerY) / centerY) * maxTilt;
+    tiltRef.current = { x: tiltX, y: tiltY };
+    scheduleApply();
+  };
+
+  const handleTouchEnd = () => {
     tiltRef.current = { x: 0, y: 0 };
     scheduleApply();
   };
@@ -113,6 +134,8 @@ const RotatingCard = ({
           onPointerLeave={handlePointerLeave}
           onPointerUp={handlePointerLeave}
           onPointerCancel={handlePointerLeave}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           sx={{
             ...sideStyle,
             transform: "rotateY(0deg)",
