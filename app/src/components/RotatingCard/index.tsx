@@ -91,7 +91,7 @@ const RotatingCard = ({
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (flipped) return; // Não aplica tilt se estiver virado
+    if (flipped) return;
     const touch = e.touches[0];
     const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
     const x = touch.clientX - rect.left;
