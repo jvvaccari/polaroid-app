@@ -72,7 +72,7 @@ const RotatingCard = ({
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (flipped) return; // Não aplica tilt se estiver virado
+    if (flipped) return;
     const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
