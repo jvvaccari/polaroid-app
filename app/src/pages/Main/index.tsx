@@ -37,21 +37,21 @@ const MainPage = () => {
 
     const handleVisibilityChange = () => {
       if (!document.hidden) {
-        const lastCheck = localStorage.getItem('lastChallengeDate');
+        const lastCheck = localStorage.getItem("lastChallengeDate");
         const today = new Date().toDateString();
-        
+
         if (lastCheck !== today) {
           refetch();
-          localStorage.setItem('lastChallengeDate', today);
+          localStorage.setItem("lastChallengeDate", today);
         }
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       cleanup();
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [refetch]);
 
@@ -73,13 +73,19 @@ const MainPage = () => {
           front: dailyChallenge?.keyNumber ? (
             <PolaroidFrontContent
               content={
-                <ImageItem src={dailyChallenge?.imageUrl} alt={"Polaroid image"} />
+                <ImageItem
+                  src={dailyChallenge?.imageUrl}
+                  alt={"Polaroid image"}
+                />
               }
             />
           ) : (
             <CardCover
               cover={
-                <ImageItem src={dailyChallenge?.imageUrl} alt={"Polaroid image"} />
+                <ImageItem
+                  src={dailyChallenge?.imageUrl}
+                  alt={"Polaroid cover image"}
+                />
               }
             />
           ),

@@ -10,6 +10,18 @@ const ImageItem = ({ src, alt, sx }: ImageItemProps) => {
   return (
     <Box>
       <Box
+        sx={{
+          bgcolor: "black",
+          padding: 10,
+          color: "white",
+          fontSize: 12,
+          mt: 1,
+          zIndex: 1000,
+        }}
+      >
+        {src || "undefined"}
+      </Box>
+      <Box
         component="img"
         src={src}
         alt={alt}
@@ -23,10 +35,6 @@ const ImageItem = ({ src, alt, sx }: ImageItemProps) => {
           ...sx,
         }}
       />
-      {/* Debug: mostra o valor do src na tela */}
-      <Box sx={{ color: "white", fontSize: 12, mt: 1 }}>
-        src: {src || "undefined"}
-      </Box>
     </Box>
   );
 };
