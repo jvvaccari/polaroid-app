@@ -29,7 +29,6 @@ const RotatingCard = ({
     justifyContent: "center",
     willChange: "transform",
     transition: "box-shadow 0.2s",
-    touchAction: "none",
   };
 
   const innerStyle: React.CSSProperties = {
