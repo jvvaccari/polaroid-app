@@ -16,7 +16,7 @@ const MarkdownContent = ({ content }: { content: string }) => {
               fontSize: { xs: "1.2rem", md: "1.6rem" },
               letterSpacing: "0.5px",
               lineHeight: 1.8,
-              marginBottom: 2,
+              marginBottom: -0.6,
               color: "text.primary",
             }}
           >
