@@ -128,13 +128,7 @@ const RotatingCard = ({
   }, [flipped]);
 
   return (
-    <Box
-      sx={cardStyle}
-      onClick={(e) => {
-        e.stopPropagation();
-        setFlipped((f) => !f);
-      }}
-    >
+    <Box sx={cardStyle} onClick={() => setFlipped((f) => !f)}>
       <Box ref={innerRef} style={innerStyle}>
         <Box
           onPointerMove={handlePointerMove}

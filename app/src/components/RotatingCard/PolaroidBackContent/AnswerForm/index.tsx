@@ -24,14 +24,14 @@ const AnswerForm = ({
   return (
     <Stack
       spacing={0.5}
-      sx={{ width: "100%" }}
-      onClick={(e) => e.stopPropagation()}
+      sx={{ width: "100%", pointerEvents: "auto" }} // <-- adicione isso
+      zIndex={1000}
+      onClick={(e) => e.stopPropagation()} // <-- garante que o clique não propague para o card
     >
       <Stack
         direction="row"
         spacing={1}
         sx={{ width: "100%", alignItems: "flex-start" }}
-        onClick={(e) => e.stopPropagation()}
       >
         <TextField
           value={answer}
@@ -39,7 +39,6 @@ const AnswerForm = ({
             setAnswer(e.target.value);
             if (error) setError(false);
           }}
-          onClick={(e) => e.stopPropagation()}
           placeholder="Qual o número do dia?"
           variant="outlined"
           size="small"
