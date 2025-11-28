@@ -1,12 +1,13 @@
-import RotatingCard from "../../components/RotatingCard";
-import BackContent from "../../components/RotatingCard/PolaroidBackContent";
-import PolaroidFrontContent from "../../components/RotatingCard/PolaroidFrontContent";
 import MainLayout from "../../layouts/main";
 import ImageItem from "../../components/ImageItem";
-import CardCover from "../../components/RotatingCard/CardCover";
+
 import { useApp } from "../../hooks/useApp";
 import { useGetDailyChallenge } from "../../hooks/daily-challenge/use-get-daily-challenge";
 import { useEffect } from "react";
+import RotateCard from "../../components/RotateCard";
+import CardCover from "../../components/RotateCard/CardCover";
+import BackContent from "../../components/RotateCard/PolaroidBackContent";
+import PolaroidFrontContent from "../../components/RotateCard/PolaroidFrontContent";
 
 const MainPage = () => {
   const { data: dailyChallenge, isError, refetch } = useGetDailyChallenge();
@@ -68,7 +69,7 @@ const MainPage = () => {
 
   return (
     <MainLayout sx={{ backgroundColor: "primary.dark" }}>
-      <RotatingCard
+      <RotateCard
         children={{
           front: dailyChallenge?.keyNumber ? (
             <PolaroidFrontContent
