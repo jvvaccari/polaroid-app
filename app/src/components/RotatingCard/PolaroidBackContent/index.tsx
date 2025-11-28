@@ -28,6 +28,7 @@ const BackContent = ({
         justifyContent: "space-between",
         height: "100%",
       }}
+      spacing={4}
       draggable={false}
       onDragStart={(e) => e.preventDefault()}
     >
