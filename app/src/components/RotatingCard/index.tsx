@@ -29,6 +29,7 @@ const RotatingCard = ({
     justifyContent: "center",
     willChange: "transform",
     transition: "box-shadow 0.2s",
+    userSelect: "none",
   };
 
   const innerStyle: React.CSSProperties = {
@@ -127,7 +128,7 @@ const RotatingCard = ({
   }, [flipped]);
 
   return (
-    <Box sx={cardStyle} onPointerDown={() => setFlipped((f) => !f)}>
+    <Box sx={cardStyle} onClick={() => setFlipped((f) => !f)}>
       <Box ref={innerRef} style={innerStyle}>
         <Box
           onPointerMove={handlePointerMove}

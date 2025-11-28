@@ -22,7 +22,7 @@ const AnswerForm = ({
   };
 
   return (
-    <Stack spacing={0.5} sx={{ width: "100%" }}>
+    <Stack spacing={0.5} sx={{ width: "100%" }} zIndex={100}>
       <Stack
         direction="row"
         spacing={1}
