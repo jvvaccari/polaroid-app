@@ -8,7 +8,7 @@ const PolaroidFrontContent = ({ content }: { content: ReactNode }) => {
       sx={{
         justifyContent: "space-between",
         alignItems: "flex-start",
-        padding: "26px",
+        padding: { xs: "16px", md: "26px" },
         boxSizing: "border-box",
         backgroundColor: "primary.light",
         backgroundImage: `radial-gradient(circle, rgba(61, 59, 59, 0.08) 1.4px, transparent 1.4px)`,
