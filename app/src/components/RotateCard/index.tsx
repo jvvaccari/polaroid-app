@@ -42,7 +42,6 @@ const RotateCard = ({
     boxShadow: flipped
       ? "0 20px 40px rgba(0, 0, 0, 0.2)"
       : "0 10px 20px rgba(0, 0, 0, 0.12)",
-    WebkitBackfaceVisibility: "hidden",
     backgroundColor: "transparent",
     transform: `translateZ(0) rotateY(${flipped ? -180 : 0}deg)`,
     willChange: "transform",
