@@ -22,7 +22,7 @@ const AnswerForm = ({
   };
 
   return (
-    <Stack spacing={0.5} sx={{ width: "100%" }} zIndex={100}>
+    <Stack spacing={0.5} sx={{ width: "100%" }}>
       <Stack
         direction="row"
         spacing={1}
@@ -35,9 +35,6 @@ const AnswerForm = ({
             setAnswer(e.target.value);
             if (error) setError(false);
           }}
-          onPointerDown={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()}
-          onClick={(e) => e.stopPropagation()}
           placeholder="Qual o número do dia?"
           variant="outlined"
           size="small"
@@ -57,8 +54,6 @@ const AnswerForm = ({
             e.stopPropagation();
             handleSubmit();
           }}
-          onPointerDown={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()}
           variant="contained"
           sx={{
             fontWeight: 600,
