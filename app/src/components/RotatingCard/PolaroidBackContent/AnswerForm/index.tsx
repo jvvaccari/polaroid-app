@@ -22,12 +22,18 @@ const AnswerForm = ({
   };
 
   return (
-    <Stack spacing={0.5} sx={{ width: "100%" }}>
+    <Stack
+      spacing={0.5}
+      sx={{ width: "100%" }}
+      onClick={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()} // <-- Adicionado para mobile
+    >
       <Stack
         direction="row"
         spacing={1}
         sx={{ width: "100%", alignItems: "flex-start" }}
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()} // <-- Adicionado para mobile
       >
         <TextField
           value={answer}
@@ -49,12 +55,14 @@ const AnswerForm = ({
             },
           }}
           onClick={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()} // <-- Adicionado para mobile
         />
         <Button
           onClick={(e) => {
             e.stopPropagation();
             handleSubmit();
           }}
+          onTouchStart={(e) => e.stopPropagation()} // <-- Adicionado para mobile
           variant="contained"
           sx={{
             fontWeight: 600,
