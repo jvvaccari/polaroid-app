@@ -22,18 +22,12 @@ const AnswerForm = ({
   };
 
   return (
-    <Stack
-      spacing={0.5}
-      sx={{ width: "100%" }}
-      onClick={(e) => e.stopPropagation()}
-      onTouchStart={(e) => e.stopPropagation()} // <-- Adicionado para mobile
-    >
+    <Stack spacing={0.5} sx={{ width: "100%" }}>
       <Stack
         direction="row"
         spacing={1}
         sx={{ width: "100%", alignItems: "flex-start" }}
         onClick={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()} // <-- Adicionado para mobile
       >
         <TextField
           value={answer}
@@ -41,6 +35,9 @@ const AnswerForm = ({
             setAnswer(e.target.value);
             if (error) setError(false);
           }}
+          onPointerDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
           placeholder="Qual o número do dia?"
           variant="outlined"
           size="small"
@@ -54,15 +51,14 @@ const AnswerForm = ({
               letterSpacing: "0.05em",
             },
           }}
-          onClick={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()} // <-- Adicionado para mobile
         />
         <Button
           onClick={(e) => {
             e.stopPropagation();
             handleSubmit();
           }}
-          onTouchStart={(e) => e.stopPropagation()} // <-- Adicionado para mobile
+          onPointerDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
           variant="contained"
           sx={{
             fontWeight: 600,
