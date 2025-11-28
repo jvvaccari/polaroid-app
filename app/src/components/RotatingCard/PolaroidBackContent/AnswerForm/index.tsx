@@ -48,6 +48,7 @@ const AnswerForm = ({
               letterSpacing: "0.05em",
             },
           }}
+          onClick={(e) => e.stopPropagation()}
         />
         <Button
           onClick={(e) => {
