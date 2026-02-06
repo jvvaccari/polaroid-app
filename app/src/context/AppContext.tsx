@@ -11,7 +11,7 @@ interface AppContextProps {
   handleMessage: (
     message: string,
     error: AlertColor,
-    position?: PositionProps
+    position?: PositionProps,
   ) => void;
 }
 
@@ -38,12 +38,12 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       setOpenSnackbar(true);
       if (position) setPosition(position);
     },
-    []
+    [],
   );
 
   const handleCloseSnackbar = (
     _event?: React.SyntheticEvent | Event,
-    reason?: string
+    reason?: string,
   ) => {
     if (reason === "clickaway") return;
     setOpenSnackbar(false);

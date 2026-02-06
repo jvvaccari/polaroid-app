@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import rehypeRaw from "rehype-raw";
 
-const MarkdownContent = ({ content }: { content: string }) => {
+const MarkdownTextContent = ({ content }: { content: string }) => {
   return (
     <ReactMarkdown
       children={content}
@@ -63,4 +63,4 @@ const MarkdownContent = ({ content }: { content: string }) => {
   );
 };
 
-export default MarkdownContent;
+export default MarkdownTextContent;

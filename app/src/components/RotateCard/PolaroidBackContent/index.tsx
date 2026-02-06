@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import { useState } from "react";
-import MarkdownContent from "../../MarkdownContent";
+import MarkdownContent from "../../MarkdownTextContent";
 import AnswerForm from "./AnswerForm";
 
 const BackContent = ({
