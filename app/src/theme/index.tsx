@@ -18,8 +18,8 @@ const theme = createTheme({
       contrastText: "#fff",
     },
   },
-  typography: {
-    fontFamily: "Send Flowers, cursive",
+    typography: {
+    fontFamily: "Roboto, Arial, sans-serif",
   },
 });
 
