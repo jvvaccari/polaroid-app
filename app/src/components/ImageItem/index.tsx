@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
 interface ImageItemProps {
-  src?: string;
+  src: string;
   alt: string;
   sx?: object;
 }

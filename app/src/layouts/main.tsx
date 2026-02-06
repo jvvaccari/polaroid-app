@@ -11,17 +11,13 @@ const MainLayout = ({ children, sx }: MainLayoutProps) => {
       sx={{
         width: "100vw",
         height: "100vh",
-        justifyContent: "center",
-        alignItems: "center",
-        overflow: "hidden",
         margin: 0,
         padding: 0,
         ...sx,
       }}
     >
       <Container
-        maxWidth="xl"
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        maxWidth="xl" sx={{ overflowY: "auto" }}
       >
         {children}
       </Container>

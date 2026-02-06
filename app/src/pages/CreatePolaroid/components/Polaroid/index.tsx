@@ -19,9 +19,10 @@ const Polaroid = ({
 
   const cardStyle = {
     backgroundColor: "transparent",
-    width: { xs: "92%", md: "100%" },
-    maxWidth: "620px",
-    aspectRatio: 1,
+    width: "100%",
+    maxWidth: "460px", 
+    aspectRatio: "4 / 5", 
+    maxHeight: "90vh", 
     perspective: 1000,
     cursor: "pointer",
     display: "flex",
@@ -61,9 +62,8 @@ const Polaroid = ({
   const applyTransform = useCallback(() => {
     if (!innerRef.current) return;
     const t = flipped ? { x: 0, y: 0 } : tiltRef.current;
-    innerRef.current.style.transform = `rotateY(${
-      flipped ? -180 : 0
-    }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+    innerRef.current.style.transform = `rotateY(${flipped ? -180 : 0
+      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
     rafRef.current = null;
   }, [flipped]);
 
@@ -71,25 +71,6 @@ const Polaroid = ({
     if (rafRef.current == null) {
       rafRef.current = requestAnimationFrame(applyTransform);
     }
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (flipped) return;
-    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const tiltX = ((x - centerX) / centerX) * maxTilt;
-    const tiltY = -((y - centerY) / centerY) * maxTilt;
-    tiltRef.current = { x: tiltX, y: tiltY };
-    scheduleApply();
-  };
-
-  const handlePointerLeave = () => {
-    tiltRef.current = { x: 0, y: 0 };
-    scheduleApply();
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -119,9 +100,8 @@ const Polaroid = ({
     }
     if (innerRef.current) {
       const t = tiltRef.current;
-      innerRef.current.style.transform = `rotateY(${
-        flipped ? -180 : 0
-      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+      innerRef.current.style.transform = `rotateY(${flipped ? -180 : 0
+        }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
     }
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -132,10 +112,6 @@ const Polaroid = ({
     <Box sx={cardStyle} onClick={() => setFlipped((f) => !f)}>
       <Box ref={innerRef} style={innerStyle}>
         <Box
-          onPointerMove={handlePointerMove}
-          onPointerLeave={handlePointerLeave}
-          onPointerUp={handlePointerLeave}
-          onPointerCancel={handlePointerLeave}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           sx={{

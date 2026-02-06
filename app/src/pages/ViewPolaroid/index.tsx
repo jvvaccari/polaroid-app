@@ -1,34 +1,44 @@
+import { Stack } from "@mui/material";
 import ImageItem from "../../components/ImageItem";
 
-import RotateCard from "./components/RotateCard";
-import CardCover from "./components/RotateCard/CardCover";
-import BackContent from "./components/RotateCard/PolaroidBackContent";
+import RotateCard from "./components/Polaroid";
+import CardCover from "./components/Polaroid/CardCover";
+import BackContent from "./components/Polaroid/PolaroidBackContent";
 
 const ViewPolaroid = () => {
   return (
-    <RotateCard
-      children={{
-        front: (
-          <CardCover
-            cover={
-              <ImageItem
-                src={"https://rounder.pics/assets/img/ui/square-image.webp"}
-                alt={"Polaroid cover image"}
-              />
-            }
-          />
-        ),
+    <Stack
+      sx={{
+        justifyContent: "center",
+        alignItems: "center",
+        overflowY: "auto",
+        height: "100vh",
+      }}>
 
-        back: (
-          <BackContent
-            content={
-              "Conteudo de exemplo para teste da polaroid com fotinho de cachorro."
-            }
-            isOnlyContent={true}
-          />
-        ),
-      }}
-    />
+      <RotateCard
+        children={{
+          front: (
+            <CardCover
+              cover={
+                <ImageItem
+                  src={"https://rounder.pics/assets/img/ui/square-image.webp"}
+                  alt={"Polaroid cover image"}
+                />
+              }
+            />
+          ),
+
+          back: (
+            <BackContent
+              content={
+                "Conteudo de exemplo para teste da polaroid com fotinho de cachorro."
+              }
+              isOnlyContent={true}
+            />
+          ),
+        }}
+      />
+    </Stack>
   );
 };
 

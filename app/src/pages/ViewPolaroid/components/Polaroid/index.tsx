@@ -7,7 +7,7 @@ import {
   useCallback,
 } from "react";
 
-const RotateCard = ({
+const Polaroid = ({
   children,
 }: {
   children: { front: ReactNode; back: ReactNode };
@@ -19,9 +19,10 @@ const RotateCard = ({
 
   const cardStyle = {
     backgroundColor: "transparent",
-    width: { xs: "92%", md: "100%" },
-    maxWidth: "620px",
-    aspectRatio: 1,
+    width: "100%",
+    maxWidth: "460px",
+    aspectRatio: "4 / 5",
+    maxHeight: "90vh",
     perspective: 1000,
     cursor: "pointer",
     display: "flex",
@@ -61,9 +62,8 @@ const RotateCard = ({
   const applyTransform = useCallback(() => {
     if (!innerRef.current) return;
     const t = flipped ? { x: 0, y: 0 } : tiltRef.current;
-    innerRef.current.style.transform = `rotateY(${
-      flipped ? -180 : 0
-    }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+    innerRef.current.style.transform = `rotateY(${flipped ? -180 : 0
+      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
     rafRef.current = null;
   }, [flipped]);
 
@@ -119,9 +119,8 @@ const RotateCard = ({
     }
     if (innerRef.current) {
       const t = tiltRef.current;
-      innerRef.current.style.transform = `rotateY(${
-        flipped ? -180 : 0
-      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+      innerRef.current.style.transform = `rotateY(${flipped ? -180 : 0
+        }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
     }
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -158,4 +157,4 @@ const RotateCard = ({
   );
 };
 
-export default RotateCard;
+export default Polaroid;

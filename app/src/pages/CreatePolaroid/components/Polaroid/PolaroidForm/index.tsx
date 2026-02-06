@@ -1,16 +1,19 @@
-import { Stack } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 
-const PolaroidForm = () => {
+interface PolaroidFormProps {
+  setContent: (content: string) => void;
+}
+
+const PolaroidForm = ({ setContent }: PolaroidFormProps) => {
   return (
     <Stack
       sx={{
         alignItems: "flex-start",
-        padding: "0 24px 24px 24px",
+        padding: "24px",
         boxSizing: "border-box",
         backgroundColor: "primary.light",
         backgroundImage: `radial-gradient(circle, rgba(61, 59, 59, 0.08) 1.4px, transparent 1.4px)`,
         backgroundSize: "20px 20px",
-        width: "100%",
         overflowY: "auto",
         justifyContent: "space-between",
         height: "100%",
@@ -19,7 +22,7 @@ const PolaroidForm = () => {
       draggable={false}
       onDragStart={(e) => e.preventDefault()}
     >
-      <Stack></Stack>
+      <TextField sx={{ width: "100%" }} multiline onClick={(e) => e.stopPropagation()} onChange={(e) => setContent(e.target.value)}/>
     </Stack>
   );
 };
