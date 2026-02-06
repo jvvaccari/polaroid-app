@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import ImageItem from "../../components/ImageItem";
 
-import RotateCard from "./components/Polaroid";
+import Polaroid from "./components/Polaroid";
 import CardCover from "./components/Polaroid/CardCover";
 import BackContent from "./components/Polaroid/PolaroidBackContent";
 
@@ -15,8 +15,8 @@ const ViewPolaroid = () => {
         height: "100vh",
       }}>
 
-      <RotateCard
-        children={{
+      <Polaroid
+        faces={{
           front: (
             <CardCover
               cover={

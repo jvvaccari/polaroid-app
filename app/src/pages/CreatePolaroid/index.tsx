@@ -9,6 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 const CreatePolaroid = () => {
   const [textContent, setTextContent] = useState("");
+  const [clear,setClear] = useState(false)
   const [image, setImage] = useState<File | null>(null);
   const { handleMessage } = useApp();
 
@@ -22,8 +23,8 @@ const CreatePolaroid = () => {
   };
 
   const handleDiscard = () => {
-    setTextContent("");
     setImage(null);
+    setClear(true);
     handleMessage("Polaroid descartada", "info", { vertical: "top", horizontal: "center" });
   };
 
@@ -34,7 +35,7 @@ const CreatePolaroid = () => {
       sx={{
         justifyContent: "space-between",
         alignItems: "center",
-        height: "calc(100vh -64px)",
+        height: "calc(100vh - 32px)",
         position: "relative",
       }}
     >
@@ -45,7 +46,7 @@ const CreatePolaroid = () => {
         spacing={1}
         sx={{
           width: "100%",
-          minHeight: 64,
+          height: 64,
         }}
       >
         <IconButton
@@ -106,9 +107,9 @@ const CreatePolaroid = () => {
         </Button>
       </Stack>
       <Polaroid
-        children={{
+        faces={{
           front: <CardCover imageFile={image} setImageFile={setImage} />,
-          back: <PolaroidForm setContent={(content) => setTextContent(content)} />,
+          back: <PolaroidForm clear={clear} setContent={(content) => setTextContent(content)} />,
         }}
       />
     </Stack>

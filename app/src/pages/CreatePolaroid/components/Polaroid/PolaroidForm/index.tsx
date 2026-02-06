@@ -1,10 +1,21 @@
 import { Stack, TextField } from "@mui/material";
+import { useEffect, useState } from "react";
 
 interface PolaroidFormProps {
+  clear: boolean;
   setContent: (content: string) => void;
 }
 
-const PolaroidForm = ({ setContent }: PolaroidFormProps) => {
+const PolaroidForm = ({ clear, setContent }: PolaroidFormProps) => {
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (clear) {
+      setValue("")
+      setContent("");
+    }
+  }, [clear, setContent])
+
   return (
     <Stack
       sx={{
@@ -22,7 +33,12 @@ const PolaroidForm = ({ setContent }: PolaroidFormProps) => {
       draggable={false}
       onDragStart={(e) => e.preventDefault()}
     >
-      <TextField sx={{ width: "100%" }} multiline onClick={(e) => e.stopPropagation()} onChange={(e) => setContent(e.target.value)}/>
+      <TextField sx={{ width: "100%" }} multiline onClick={(e) =>
+        e.stopPropagation()}
+        onChange={(e) => {
+          setContent(e.target.value);
+          setValue(e.target.value)
+        }} value={value} />
     </Stack>
   );
 };

@@ -8,9 +8,9 @@ import {
 } from "react";
 
 const Polaroid = ({
-  children,
+  faces,
 }: {
-  children: { front: ReactNode; back: ReactNode };
+  faces: { front: ReactNode; back: ReactNode };
 }) => {
   const [flipped, setFlipped] = useState(false);
   const innerRef = useRef<HTMLDivElement | null>(null);
@@ -142,7 +142,7 @@ const Polaroid = ({
             transform: "rotateY(0deg)",
           }}
         >
-          {children.front}
+          {faces.front}
         </Box>
         <Box
           sx={{
@@ -150,7 +150,7 @@ const Polaroid = ({
             transform: "rotateY(-180deg)",
           }}
         >
-          {children.back}
+          {faces.back}
         </Box>
       </Box>
     </Box>
