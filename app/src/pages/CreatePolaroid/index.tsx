@@ -1,15 +1,14 @@
-import { Stack, Button, IconButton } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
+import { Stack } from "@mui/material";
 import Polaroid from "./components/Polaroid";
 import CardCover from "./components/Polaroid/CardCover";
 import PolaroidForm from "./components/Polaroid/PolaroidForm";
 import { useState } from "react";
 import { useApp } from "../../hooks/useApp";
-import DeleteIcon from "@mui/icons-material/Delete";
+import HeaderActions from "./components/HeaderActions";
 
 const CreatePolaroid = () => {
   const [textContent, setTextContent] = useState("");
-  const [clear,setClear] = useState(false)
+  const [clear, setClear] = useState(false)
   const [image, setImage] = useState<File | null>(null);
   const { handleMessage } = useApp();
 
@@ -28,9 +27,11 @@ const CreatePolaroid = () => {
     handleMessage("Polaroid descartada", "info", { vertical: "top", horizontal: "center" });
   };
 
+  const handlePdf = () => {
+    // ação para PDF
+  };
+
   return (
-
-
     <Stack
       sx={{
         justifyContent: "space-between",
@@ -39,77 +40,11 @@ const CreatePolaroid = () => {
         position: "relative",
       }}
     >
-      <Stack
-        direction="row"
-        alignItems="center"
-        justifyContent="flex-end"
-        spacing={1}
-        sx={{
-          width: "100%",
-          height: 64,
-        }}
-      >
-        <IconButton
-          color="error"
-          onClick={handleDiscard}
-          sx={{
-            display: { xs: "flex", md: "none" },
-            minWidth: "40px",
-            fontSize: "1.2rem",
-            background: "#1e1e1e10"
-          }}
-        >
-          <DeleteIcon />
-        </IconButton>
-
-        <IconButton
-          color="primary"
-          onClick={handleSave}
-          sx={{
-            display: { xs: "flex", md: "none" },
-            minWidth: "40px",
-            fontSize: "1.2rem",
-            background: "#1e1e1e10"
-          }}
-        >
-          <SaveIcon />
-        </IconButton>
-
-        <Button
-          variant="contained"
-          color="error"
-          onClick={handleDiscard}
-          sx={{
-            display: { xs: "none", md: "flex" },
-            minWidth: "80px",
-            fontSize: "1rem",
-            padding: "8px 16px",
-            marginRight: 1,
-          }}
-          startIcon={<DeleteIcon />}
-        >
-          Descartar
-        </Button>
-
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSave}
-          sx={{
-            display: { xs: "none", md: "flex" },
-            minWidth: "80px",
-            fontSize: "1rem",
-            padding: "8px 16px",
-          }}
-          startIcon={<SaveIcon />}
-        >
-          Salvar
-        </Button>
-      </Stack>
+      <HeaderActions onSave={handleSave} onDiscard={handleDiscard} onPdf={handlePdf} />
       <Polaroid
         faces={{
-          front: <CardCover imageFile={image} setImageFile={setImage} />,
-          back: <PolaroidForm clear={clear} setContent={(content) => setTextContent(content)} />,
+          front: <CardCover imageFile={image} setImageFile={setImage} />, 
+          back: <PolaroidForm clear={clear} setContent={(content) => setTextContent(content)} />, 
         }}
       />
     </Stack>
