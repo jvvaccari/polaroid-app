@@ -1,14 +1,12 @@
 import { Box, Stack } from "@mui/material";
-import { type ReactNode } from "react";
-import CurrentDate from "../../CurrentDate";
+import polaroidIcon from "../../../../../assets/icons/pages/CreatePolaroid/polaroidIcon.png";
 
-const PolaroidFrontContent = ({ content }: { content: ReactNode }) => {
+const CardCover = () => {
   return (
     <Stack
       sx={{
         justifyContent: "space-between",
         alignItems: "flex-start",
-        padding: { xs: "16px", md: "26px" },
         boxSizing: "border-box",
         backgroundColor: "primary.light",
         backgroundImage: `radial-gradient(circle, rgba(61, 59, 59, 0.08) 1.4px, transparent 1.4px)`,
@@ -17,12 +15,19 @@ const PolaroidFrontContent = ({ content }: { content: ReactNode }) => {
         height: "100%",
       }}
     >
-      <Box overflow={"hidden"} height="86%">
-        {content}
+      <Box height="100%" width="100%" p={4}>
+        <Stack
+          width="100%"
+          height="100%"
+          border={"1px dashed #1e1e1e"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Box component={"img"} src={polaroidIcon} width={100} />
+        </Stack>
       </Box>
-      <CurrentDate />
     </Stack>
   );
 };
 
-export default PolaroidFrontContent;
+export default CardCover;

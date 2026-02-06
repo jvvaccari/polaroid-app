@@ -1,12 +1,14 @@
-
-import './App.css'
-import MainPage from './pages/Main'
+import "./App.css";
+import MainLayout from "./layouts/main";
+import CreatePolaroid from "./pages/CreatePolaroid";
+// import ViewPolaroid from "./pages/ViewPolaroid";
 
 function App() {
-
   return (
-    <MainPage />
-  )
+    <MainLayout sx={{ backgroundColor: "primary.dark" }}>
+      <CreatePolaroid />;
+    </MainLayout>
+  );
 }
 
-export default App
+export default App;

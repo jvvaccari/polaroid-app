@@ -1,19 +1,13 @@
 import { Stack } from "@mui/material";
-import { useState } from "react";
 import MarkdownContent from "../../MarkdownTextContent";
-import AnswerForm from "./AnswerForm";
 
 const BackContent = ({
   content,
-  isOnlyContent,
-  handleSubmit,
 }: {
-  content?: string;
   isOnlyContent: boolean;
-  handleSubmit: (answer: string) => void;
+  content?: string;
+  handleSubmit?: (answer: string) => void;
 }) => {
-  const [answer, setAnswer] = useState("");
-
   return (
     <Stack
       sx={{
@@ -35,14 +29,6 @@ const BackContent = ({
       <Stack>
         <MarkdownContent content={content || ""} />
       </Stack>
-
-      {isOnlyContent && content && (
-        <AnswerForm
-          answer={answer}
-          setAnswer={setAnswer}
-          onSubmit={() => handleSubmit(answer)}
-        />
-      )}
     </Stack>
   );
 };

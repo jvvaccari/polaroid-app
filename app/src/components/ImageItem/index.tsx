@@ -16,8 +16,9 @@ const ImageItem = ({ src, alt, sx }: ImageItemProps) => {
       onDragStart={(e) => e.preventDefault()}
       sx={{
         width: "100%",
-        height: "auto",
+        height: "100%",
         objectFit: "cover",
+        objectPosition: "center",
         display: "block",
         ...sx,
       }}
