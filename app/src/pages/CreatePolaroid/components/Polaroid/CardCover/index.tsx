@@ -1,5 +1,5 @@
 import { Box, ButtonBase, IconButton, Stack, Typography } from "@mui/material";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import ImageItem from "../../../../../components/ImageItem";
 import polaroidIcon from "../../../../../assets/icons/pages/CreatePolaroid/polaroidIcon.png";
