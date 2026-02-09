@@ -5,6 +5,7 @@ import PolaroidForm from "./components/Polaroid/PolaroidForm";
 import { useState } from "react";
 import { useApp } from "../../hooks/useApp";
 import HeaderActions from "./components/HeaderActions";
+import { generatePolaroidPdf } from "./utils/pdfGenerator";
 
 const CreatePolaroid = () => {
   const [textContent, setTextContent] = useState("");
@@ -28,25 +29,23 @@ const CreatePolaroid = () => {
   };
 
   const handlePdf = () => {
-    // ação para PDF
+    generatePolaroidPdf({
+      textContent,
+      onError: (message) => handleMessage(message, "error", { vertical: "top", horizontal: "center" }),
+    });
   };
 
   return (
-    <Stack
-      sx={{
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: "calc(100vh - 32px)",
-        position: "relative",
-      }}
-    >
+    <Stack flex={1}>
       <HeaderActions onSave={handleSave} onDiscard={handleDiscard} onPdf={handlePdf} />
-      <Polaroid
-        faces={{
-          front: <CardCover imageFile={image} setImageFile={setImage} />, 
-          back: <PolaroidForm clear={clear} setContent={(content) => setTextContent(content)} />, 
-        }}
-      />
+      <Stack alignItems="center" justifyContent="center" flex={1}>
+        <Polaroid
+          faces={{
+            front: <CardCover imageFile={image} setImageFile={setImage} />,
+            back: <PolaroidForm clear={clear} setContent={(content) => setTextContent(content)} />,
+          }}
+        />
+      </Stack>
     </Stack>
   );
 };

@@ -37,3 +37,32 @@ html, body, #root {
   margin: 0 auto; /* centraliza quando align center */
 }
 
+/* Estilos para captura de PDF - oculta elementos de UI */
+.pdf-capture-mode .hide-on-capture {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Remove bordas e outline do TextField durante captura */
+.pdf-capture-mode .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
+.pdf-capture-mode .MuiInputBase-root {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.pdf-capture-mode .MuiTextField-root fieldset {
+  border: none !important;
+}
+
+/* Remove cursor e seleção */
+.pdf-capture-mode * {
+  caret-color: transparent !important;
+}
+
+.pdf-capture-mode ::selection {
+  background: transparent !important;
+}

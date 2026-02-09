@@ -29,9 +29,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({ onSave, onDiscard, onPdf 
         backgroundColor: "#2196f3",
         color: "#fff",
         minWidth: "48px",
-        width: "48px",
-        height: "48px",
-        padding: 0,
+        height: "44px",
         borderRadius: "8px",
         boxShadow: "none",
         '&:hover': {
@@ -39,25 +37,19 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({ onSave, onDiscard, onPdf 
         },
       }}
     >
-      <PictureAsPdfIcon sx={{ color: "#fff", fontSize: 28 }} />
+      <PictureAsPdfIcon sx={{ color: "#fff", fontSize: 24 }} />
     </Button>
 
     <IconButton
       onClick={onPdf}
       sx={{
         display: { xs: "flex", md: "none" },
-        backgroundColor: "#2196f3",
-        color: "#fff",
         minWidth: "40px",
-        width: "40px",
         height: "40px",
         borderRadius: "8px",
-        '&:hover': {
-          backgroundColor: "#1976d2",
-        },
       }}
     >
-      <PictureAsPdfIcon sx={{ color: "#fff", fontSize: 24 }} />
+      <PictureAsPdfIcon sx={{ color: "#2196f3", fontSize: 24 }} />
     </IconButton>
 
     <IconButton

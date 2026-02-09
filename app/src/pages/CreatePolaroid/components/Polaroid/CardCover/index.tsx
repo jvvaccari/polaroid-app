@@ -37,6 +37,7 @@ const CardCover = ({ imageFile, setImageFile }: CardCoverProps) => {
 
   return (
     <Stack
+      id="polaroid-front"
       sx={{
         justifyContent: "space-between",
         alignItems: "flex-start",
@@ -72,6 +73,7 @@ const CardCover = ({ imageFile, setImageFile }: CardCoverProps) => {
         {imageFile && (
           <Box position="relative" width="100%" height="100%">
             <IconButton
+              className="hide-on-capture"
               sx={{
                 position: "absolute",
                 top: 8,

@@ -18,6 +18,7 @@ const PolaroidForm = ({ clear, setContent }: PolaroidFormProps) => {
 
   return (
     <Stack
+      id="polaroid-back"
       sx={{
         alignItems: "flex-start",
         padding: "24px",

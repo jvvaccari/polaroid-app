@@ -16,13 +16,13 @@ const Polaroid = ({
   const innerRef = useRef<HTMLDivElement | null>(null);
   const tiltRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
+  const maxWidth = { xs: 320, sm: 380, md: 420 }
 
   const cardStyle = {
     backgroundColor: "transparent",
     width: "100%",
-    maxWidth: "460px", 
-    aspectRatio: "4 / 5", 
-    maxHeight: "90vh", 
+    height: { xs: maxWidth.xs * 1.2, md: maxWidth.md * 1.2},
+    maxWidth: { xs: maxWidth.xs, md: maxWidth.md},
     perspective: 1000,
     cursor: "pointer",
     display: "flex",
