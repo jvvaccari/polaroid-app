@@ -7,13 +7,13 @@ interface PolaroidForPdfProps {
 }
 
 const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
-  const maxWidth = { xs: 320, sm: 380, md: 420 };
+  // Dimensões fixas para o PDF — não depende do tamanho da tela
+  const fixedWidth = 420;
 
-  const polaroidContainerStyle = {
+  const polaroidContainerStyle: React.CSSProperties = {
     backgroundColor: "transparent",
-    width: "100%",
-    height: { xs: maxWidth.xs * 1.2, md: maxWidth.md * 1.2 },
-    maxWidth: { xs: maxWidth.xs, md: maxWidth.md },
+    width: fixedWidth,
+    height: fixedWidth * 1.2,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -35,7 +35,7 @@ const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
     border: "1px solid #e8e8e8",
   };
 
-  const polaroidBackStyle = {
+  const polaroidBackStyle: React.CSSProperties = {
     width: "100%",
     height: "100%",
     backgroundColor: "#f5f5f5",
@@ -45,9 +45,10 @@ const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
     flexDirection: "column",
     justifyContent: "flex-start",
     border: "1px solid #e8e8e8",
+    overflow: "hidden",
   };
 
-  const imageContainerStyle = {
+  const imageContainerStyle: React.CSSProperties = {
     width: "100%",
     height: "100%",
     border: imageUrl.length > 0 ? "none" : "2px dashed #1e1e1e",
@@ -59,9 +60,10 @@ const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
     boxShadow: imageUrl.length > 0 ? "0 1px 4px rgba(0, 0, 0, 0.1)" : "none",
   };
 
-  const textContentStyle = {
+  const textContentStyle: React.CSSProperties = {
     width: "100%",
-    minHeight: "280px",
+    maxHeight: `${fixedWidth * 1.2 - 48}px`,
+    overflow: "hidden",
     backgroundColor: "transparent",
     border: "none",
     outline: "none",
@@ -78,15 +80,16 @@ const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
   return (
     <Stack
       spacing={2}
-      p={1}
-      sx={{
+      style={{
+        padding: "8px",
         backgroundColor: "white",
+        width: `${fixedWidth + 16}px`,
       }}
     >
-      <Box sx={polaroidContainerStyle}>
-        <Box sx={polaroidFrontStyle}>
+      <Box style={polaroidContainerStyle}>
+        <Box style={polaroidFrontStyle}>
           <Box
-            sx={{
+            style={{
               position: "absolute",
               top: 0,
               left: 0,
@@ -108,12 +111,12 @@ const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
               pointerEvents: "none",
             }}
           />
-          <Box sx={imageContainerStyle}>
+          <Box style={imageContainerStyle}>
             {imageUrl.length > 0 ? (
               <ImageItem src={imageUrl} alt="Polaroid Image" />
             ) : (
               <Box
-                sx={{
+                style={{
                   color: "#666",
                   fontWeight: "600",
                   textAlign: "center",
@@ -128,9 +131,9 @@ const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
       </Box>
 
       {textContent.length > 0 && (
-        <Box sx={polaroidContainerStyle}>
-          <Box sx={polaroidBackStyle}>
-            <Typography sx={textContentStyle}>{textContent}</Typography>
+        <Box style={polaroidContainerStyle}>
+          <Box style={polaroidBackStyle}>
+            <Typography style={textContentStyle}>{textContent}</Typography>
           </Box>
         </Box>
       )}
