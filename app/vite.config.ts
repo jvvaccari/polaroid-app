@@ -13,6 +13,12 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api-uploads/, '/uploads'),
         secure: true
+      },
+      '/api': {
+        target: 'https://polaroid-api-theta.vercel.app',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: true
       }
     }
   }
