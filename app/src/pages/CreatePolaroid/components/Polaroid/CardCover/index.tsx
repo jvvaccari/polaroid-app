@@ -40,7 +40,6 @@ const CardCover = ({ imageFile, setImageFile }: CardCoverProps) => {
 
   return (
     <Stack
-      id="polaroid-front"
       sx={{
         justifyContent: "space-between",
         alignItems: "flex-start",

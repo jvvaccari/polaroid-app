@@ -15,7 +15,7 @@ const CardCover = ({ cover }: { cover: ReactNode }) => {
         height: "100%",
       }}
     >
-      <Box height="100%" p={4}>
+      <Box height="100%" width="100%" p={"24px 24px 72px 24px"}>
         {cover}
       </Box>
     </Stack>

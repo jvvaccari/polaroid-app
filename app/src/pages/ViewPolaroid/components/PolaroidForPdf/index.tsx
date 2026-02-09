@@ -2,11 +2,11 @@ import { Box, Stack, Typography } from "@mui/material";
 import ImageItem from "../../../../components/ImageItem";
 
 interface PolaroidForPdfProps {
-  imageFile: File | null;
+  imageUrl: string;
   textContent: string;
 }
 
-const PolaroidForPdf = ({ imageFile, textContent }: PolaroidForPdfProps) => {
+const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
   const maxWidth = { xs: 320, sm: 380, md: 420 };
 
   const polaroidContainerStyle = {
@@ -50,13 +50,13 @@ const PolaroidForPdf = ({ imageFile, textContent }: PolaroidForPdfProps) => {
   const imageContainerStyle = {
     width: "100%",
     height: "100%",
-    border: imageFile ? "none" : "2px dashed #1e1e1e",
+    border: imageUrl.length > 0 ? "none" : "2px dashed #1e1e1e",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
     overflow: "hidden",
-    boxShadow: imageFile ? "0 1px 4px rgba(0, 0, 0, 0.1)" : "none",
+    boxShadow: imageUrl.length > 0 ? "0 1px 4px rgba(0, 0, 0, 0.1)" : "none",
   };
 
   const textContentStyle = {
@@ -109,11 +109,8 @@ const PolaroidForPdf = ({ imageFile, textContent }: PolaroidForPdfProps) => {
             }}
           />
           <Box sx={imageContainerStyle}>
-            {imageFile ? (
-              <ImageItem
-                src={URL.createObjectURL(imageFile)}
-                alt="Polaroid Image"
-              />
+            {imageUrl.length > 0 ? (
+              <ImageItem src={imageUrl} alt="Polaroid Image" />
             ) : (
               <Box
                 sx={{
@@ -130,7 +127,6 @@ const PolaroidForPdf = ({ imageFile, textContent }: PolaroidForPdfProps) => {
         </Box>
       </Box>
 
-      {/* Verso do Polaroid */}
       {textContent.length > 0 && (
         <Box sx={polaroidContainerStyle}>
           <Box sx={polaroidBackStyle}>

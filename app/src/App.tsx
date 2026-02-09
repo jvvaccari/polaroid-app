@@ -1,15 +1,9 @@
 import "./App.css";
-import MainLayout from "./layouts/main";
-import CreatePolaroid from "./pages/CreatePolaroid";
-// import ViewPolaroid from "./pages/ViewPolaroid";
+import AppRouter from "./routes/Router";
+// import CreatePolaroid from "./pages/CreatePolaroid";
 
 function App() {
-  return (
-    <MainLayout sx={{ backgroundColor: "primary.900" }}>
-      <CreatePolaroid />;
-      {/* <ViewPolaroid/> */}
-    </MainLayout>
-  );
+  return <AppRouter />;
 }
 
 export default App;

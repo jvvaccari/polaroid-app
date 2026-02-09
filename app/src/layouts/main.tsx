@@ -1,11 +1,7 @@
-import { Container, Stack, type SxProps, type Theme } from "@mui/material";
+import { Container, Stack } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
-interface MainLayoutProps {
-  children: React.ReactNode;
-  sx?: SxProps<Theme>;
-}
-
-const MainLayout = ({ children, sx }: MainLayoutProps) => {
+const MainLayout = () => {
   return (
     <Stack
       sx={{
@@ -14,7 +10,7 @@ const MainLayout = ({ children, sx }: MainLayoutProps) => {
         overflow: "auto",
         margin: 0,
         padding: 0,
-        ...sx,
+        backgroundColor: "primary.900",
       }}
     >
       <Container
@@ -25,7 +21,7 @@ const MainLayout = ({ children, sx }: MainLayoutProps) => {
           flexDirection: "column",
         }}
       >
-        {children}
+        <Outlet />
       </Container>
     </Stack>
   );
