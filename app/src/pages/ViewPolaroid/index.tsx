@@ -107,7 +107,7 @@ const ViewPolaroid = () => {
       )}
 
       {polaroid && (
-        <Box sx={{ position: "absolute", bottom: 0 }}>
+        <Box sx={{ position: "absolute", bottom: -3000 }}>
           <Stack
             ref={pdfRef}
             style={{
