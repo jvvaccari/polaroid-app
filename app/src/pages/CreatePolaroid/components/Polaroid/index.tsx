@@ -16,13 +16,13 @@ const Polaroid = ({
   const innerRef = useRef<HTMLDivElement | null>(null);
   const tiltRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
-  const maxWidth = { xs: 320, sm: 380, md: 420 }
+  const maxWidth = { xs: 320, sm: 380, md: 420 };
 
   const cardStyle = {
     backgroundColor: "transparent",
     width: "100%",
-    height: { xs: maxWidth.xs * 1.2, md: maxWidth.md * 1.2},
-    maxWidth: { xs: maxWidth.xs, md: maxWidth.md},
+    height: { xs: maxWidth.xs * 1.2, md: maxWidth.md * 1.2 },
+    maxWidth: { xs: maxWidth.xs, md: maxWidth.md },
     perspective: 1000,
     cursor: "pointer",
     display: "flex",
@@ -62,8 +62,9 @@ const Polaroid = ({
   const applyTransform = useCallback(() => {
     if (!innerRef.current) return;
     const t = flipped ? { x: 0, y: 0 } : tiltRef.current;
-    innerRef.current.style.transform = `rotateY(${flipped ? -180 : 0
-      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+    innerRef.current.style.transform = `rotateY(${
+      flipped ? -180 : 0
+    }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
     rafRef.current = null;
   }, [flipped]);
 
@@ -100,8 +101,9 @@ const Polaroid = ({
     }
     if (innerRef.current) {
       const t = tiltRef.current;
-      innerRef.current.style.transform = `rotateY(${flipped ? -180 : 0
-        }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
+      innerRef.current.style.transform = `rotateY(${
+        flipped ? -180 : 0
+      }deg) rotateX(${t.y}deg) rotateY(${t.x}deg)`;
     }
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
