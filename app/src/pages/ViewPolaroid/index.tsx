@@ -1,25 +1,24 @@
 import { Box, Stack } from "@mui/material";
 import ImageItem from "../../components/ImageItem";
 import { useParams } from "react-router-dom";
-import imageUrlToBase64 from "../../utils/imageUrlToBase64";
+import { resolveImageUrl } from "../../utils/resolveImageUrl";
+import { useApp } from "../../hooks/useApp";
+import { useEffect, useRef, useState } from "react";
+import { polaroidService } from "../../services";
+import { IPolaroid } from "../../interfaces/IPolaroid";
 
 import Polaroid from "./components/Polaroid";
 import CardCover from "./components/Polaroid/CardCover";
 import BackContent from "./components/Polaroid/PolaroidBackContent";
 import PolaroidForPdf from "./components/PolaroidForPdf";
-import { useApp } from "../../hooks/useApp";
-import { useEffect, useRef, useState } from "react";
 import html2pdf from "html2pdf.js";
 import HeaderActions from "./components/HeaderActions";
-import { polaroidService } from "../../services";
-import { IPolaroid } from "../../interfaces/IPolaroid";
 
 const ViewPolaroid = () => {
   const { handleMessage } = useApp();
   const pdfRef = useRef<HTMLDivElement>(null);
   const { id } = useParams();
   const [polaroid, setPolaroid] = useState<IPolaroid | null>(null);
-  const [base64Img, setBase64Img] = useState<string>("");
 
   const handlePdf = () => {
     const element = pdfRef.current;
@@ -73,17 +72,6 @@ const ViewPolaroid = () => {
     fetchPolaroid();
   }, []);
 
-  useEffect(() => {
-    const getBase64 = async () => {
-      if (!polaroid) return;
-      const image = await imageUrlToBase64(polaroid.imageUrl);
-      if (image.length === 0) return;
-      setBase64Img(image);
-    };
-
-    getBase64();
-  }, [polaroid]);
-
   return (
     <Stack flex={1}>
       <HeaderActions
@@ -100,7 +88,7 @@ const ViewPolaroid = () => {
                 <CardCover
                   cover={
                     <ImageItem
-                      src={polaroid.imageUrl}
+                      src={resolveImageUrl(polaroid.imageUrl)}
                       alt={"Polaroid cover image"}
                     />
                   }
@@ -131,7 +119,7 @@ const ViewPolaroid = () => {
             }}
           >
             <PolaroidForPdf
-              imageUrl={base64Img}
+              imageUrl={resolveImageUrl(polaroid.imageUrl)}
               textContent={polaroid.backContent}
             />
           </Stack>
