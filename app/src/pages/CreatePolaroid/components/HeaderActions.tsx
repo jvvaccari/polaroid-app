@@ -10,7 +10,11 @@ interface HeaderActionsProps {
   onPdf: () => void;
 }
 
-const HeaderActions: React.FC<HeaderActionsProps> = ({ onSave, onDiscard, onPdf }) => (
+const HeaderActions: React.FC<HeaderActionsProps> = ({
+  onSave,
+  onDiscard,
+  onPdf,
+}) => (
   <Stack
     direction="row"
     alignItems="center"
@@ -32,7 +36,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({ onSave, onDiscard, onPdf 
         height: "44px",
         borderRadius: "8px",
         boxShadow: "none",
-        '&:hover': {
+        "&:hover": {
           backgroundColor: "#1976d2",
         },
       }}
@@ -59,7 +63,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({ onSave, onDiscard, onPdf 
         display: { xs: "flex", md: "none" },
         minWidth: "40px",
         fontSize: "1.2rem",
-        background: "#1e1e1e10"
+        background: "#1e1e1e10",
       }}
     >
       <DeleteIcon />
@@ -72,7 +76,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({ onSave, onDiscard, onPdf 
         display: { xs: "flex", md: "none" },
         minWidth: "40px",
         fontSize: "1.2rem",
-        background: "#1e1e1e10"
+        background: "#1e1e1e10",
       }}
     >
       <SaveIcon />

@@ -1,6 +1,6 @@
 import { Box, ButtonBase, IconButton, Stack, Typography } from "@mui/material";
 import { useRef } from "react";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import ImageItem from "../../../../../components/ImageItem";
 import polaroidIcon from "../../../../../assets/icons/pages/CreatePolaroid/polaroidIcon.png";
 
@@ -11,17 +11,6 @@ interface CardCoverProps {
 
 const CardCover = ({ imageFile, setImageFile }: CardCoverProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const inputImage = <input
-    ref={inputRef}
-    type="file"
-    accept="image/*"
-    style={{ display: "none" }}
-    onChange={(e) => {
-      e.stopPropagation();
-      handleFileChange(e);
-    }}
-  />;
 
   const handleUploadImage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -34,6 +23,20 @@ const CardCover = ({ imageFile, setImageFile }: CardCoverProps) => {
       setImageFile(file);
     }
   };
+
+  const inputImage = (
+    <Box
+      component="input"
+      ref={inputRef}
+      type="file"
+      accept="image/*"
+      style={{ display: "none" }}
+      onChange={(e) => {
+        e.stopPropagation();
+        handleFileChange(e);
+      }}
+    />
+  );
 
   return (
     <Stack
@@ -49,8 +52,13 @@ const CardCover = ({ imageFile, setImageFile }: CardCoverProps) => {
         height: "100%",
       }}
     >
-      <Box height="100%" width="100%" p={"24px 24px 72px 24px"} position="relative">
-        {!imageFile &&
+      <Box
+        height="100%"
+        width="100%"
+        p={"24px 24px 72px 24px"}
+        position="relative"
+      >
+        {!imageFile && (
           <ButtonBase
             onClick={handleUploadImage}
             sx={{
@@ -69,7 +77,7 @@ const CardCover = ({ imageFile, setImageFile }: CardCoverProps) => {
             <Box component={"img"} src={polaroidIcon} width={100} mb={2} />
             <Typography fontWeight={600}>Adicione uma imagem</Typography>
           </ButtonBase>
-        }
+        )}
         {imageFile && (
           <Box position="relative" width="100%" height="100%">
             <IconButton
@@ -85,16 +93,19 @@ const CardCover = ({ imageFile, setImageFile }: CardCoverProps) => {
                 width: 32,
                 height: 32,
                 p: 0.8,
-                "&:hover": { background: "rgba(0, 0, 0, 0.6)" }
+                "&:hover": { background: "rgba(0, 0, 0, 0.6)" },
               }}
               onClick={handleUploadImage}
             >
               {inputImage}
-              <EditIcon
-              />
+              <EditIcon />
             </IconButton>
-            <ImageItem src={URL.createObjectURL(imageFile)} alt={"Preview Image"} />
-          </Box>)}
+            <ImageItem
+              src={URL.createObjectURL(imageFile)}
+              alt={"Preview Image"}
+            />
+          </Box>
+        )}
       </Box>
     </Stack>
   );
