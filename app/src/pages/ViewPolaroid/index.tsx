@@ -1,7 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import ImageItem from "../../components/ImageItem";
 import { useParams } from "react-router-dom";
-import { resolveImageUrl } from "../../utils/resolveImageUrl";
 import { useApp } from "../../hooks/useApp";
 import { useEffect, useRef, useState } from "react";
 import { polaroidService } from "../../services";
@@ -13,6 +12,7 @@ import BackContent from "./components/Polaroid/PolaroidBackContent";
 import PolaroidForPdf from "./components/PolaroidForPdf";
 import html2pdf from "html2pdf.js";
 import HeaderActions from "./components/HeaderActions";
+import resolveImageUrl from "../../utils/resolveImageUrl";
 
 const ViewPolaroid = () => {
   const { handleMessage } = useApp();
