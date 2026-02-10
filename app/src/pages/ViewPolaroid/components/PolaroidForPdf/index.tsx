@@ -1,5 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import ImageItem from "../../../../components/ImageItem";
+import MarkdownContent from "../MarkdownTextContent";
 
 interface PolaroidForPdfProps {
   imageUrl: string;
@@ -60,23 +61,6 @@ const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
     boxShadow: imageUrl.length > 0 ? "0 1px 4px rgba(0, 0, 0, 0.1)" : "none",
   };
 
-  const textContentStyle: React.CSSProperties = {
-    width: "100%",
-    maxHeight: `${fixedWidth * 1.2 - 48}px`,
-    overflow: "hidden",
-    backgroundColor: "transparent",
-    border: "none",
-    outline: "none",
-    fontSize: "14px",
-    lineHeight: "1.5",
-    color: "#333",
-    fontFamily: "Arial, sans-serif",
-    padding: "0",
-    margin: "0",
-    wordWrap: "break-word",
-    whiteSpace: "pre-wrap",
-  };
-
   return (
     <Stack
       spacing={2}
@@ -133,7 +117,7 @@ const PolaroidForPdf = ({ imageUrl, textContent }: PolaroidForPdfProps) => {
       {textContent.length > 0 && (
         <Box style={polaroidContainerStyle}>
           <Box style={polaroidBackStyle}>
-            <Typography style={textContentStyle}>{textContent}</Typography>
+            <MarkdownContent content={textContent || ""} />
           </Box>
         </Box>
       )}
