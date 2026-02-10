@@ -17,4 +17,11 @@ export class PolaroidService {
     const response = await this.api.get(`/polaroids/${id}`);
     return response.data as IPolaroid;
   }
+
+  public async createPolaroid(data: FormData) : Promise<IPolaroid> {
+    const response = await this.api.post("/polaroids", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data as IPolaroid;
+  }
 }

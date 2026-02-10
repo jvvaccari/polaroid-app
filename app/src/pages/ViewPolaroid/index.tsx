@@ -1,10 +1,9 @@
-import { Box, Stack } from "@mui/material";
+import { Box, CircularProgress, Stack } from "@mui/material";
 import ImageItem from "../../components/ImageItem";
 import { useParams } from "react-router-dom";
 import { useApp } from "../../hooks/useApp";
-import { useEffect, useRef, useState } from "react";
-import { polaroidService } from "../../services";
-import { IPolaroid } from "../../interfaces/IPolaroid";
+import { useEffect, useRef } from "react";
+import { usePolaroidById } from "../../hooks/usePolaroid";
 
 import Polaroid from "./components/Polaroid";
 import CardCover from "./components/Polaroid/CardCover";
@@ -18,7 +17,9 @@ const ViewPolaroid = () => {
   const { handleMessage } = useApp();
   const pdfRef = useRef<HTMLDivElement>(null);
   const { id } = useParams();
-  const [polaroid, setPolaroid] = useState<IPolaroid | null>(null);
+
+  // useQuery retorna: data, isPending, isError, error, refetch, etc.
+  const { data: polaroid, isPending, isError } = usePolaroidById(id);
 
   const handlePdf = () => {
     const element = pdfRef.current;
@@ -55,22 +56,21 @@ const ViewPolaroid = () => {
   };
 
   useEffect(() => {
-    const fetchPolaroid = async () => {
-      if (!id) return;
-      try {
-        const pol = await polaroidService.getPolaroidById(id);
-        if (!pol) return;
-        setPolaroid(pol);
-      } catch (e: unknown) {
-        handleMessage("Erro ao carregar polaroid!\n\n" + e, "error", {
-          vertical: "top",
-          horizontal: "center",
-        });
-      }
-    };
+    if (isError) {
+      handleMessage("Erro ao carregar polaroid!", "error", {
+        vertical: "top",
+        horizontal: "center",
+      });
+    }
+  }, [isError, handleMessage]);
 
-    fetchPolaroid();
-  }, []);
+  if (isPending) {
+    return (
+      <Stack alignItems="center" justifyContent="center" flex={1}>
+        <CircularProgress />
+      </Stack>
+    );
+  }
 
   return (
     <Stack flex={1}>
